@@ -43,11 +43,12 @@ public class MainActivity extends AppCompatActivity {
         initHousNumbersSpinner();
     }
     private void initHousNumbersSpinner() {
-        Integer[] houseNumbers = new Integer[50];
-        for (int i = 1; i <= 50; i++) {
+        final int numberOfHouses = 50;
+        Integer[] houseNumbers = new Integer[numberOfHouses];
+        for (int i = 1; i <= numberOfHouses; i++) {
             houseNumbers[i - 1] = i;
         }
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, houseNumbers);
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, houseNumbers);
         mHouseNumberSpinner.setAdapter(adapter);
     }
     private void initSpinnerCountries() {
@@ -57,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
 
         mCountriesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long rowId) {
                 String[] countries = getResources().getStringArray(R.array.countries);
-                initSpinnerCities(countries[i]);
+                initSpinnerCities(countries[position]);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
